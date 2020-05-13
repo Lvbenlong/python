@@ -45,3 +45,76 @@ Url: https://www.liaoxuefeng.com/wiki/1016959663602400/1017092876846880
     有几个%?占位符，后面就跟几个变量或者值，顺序要对应好。如果只有一个%?，括号可以省略。
 2. format()格式化: 用传入的参数依次替换字符串内的占位符
     print('Hello, {0}, 成绩提升了 {1}%'.format('小明', 17.25))
+
+## list 列表 (类似JavaScript中的数组)
+1. 定义: classmates = ['Johnny', 'Jack', 'Smith']
+2. len() 获取列表的长度 len(classmates)  ===> 3
+3. 列表的索引: ; 从0开始, 也可以从-1开始,-1代表从后往前的顺序 越界会报错
+4. append(value): 向列表中追加value值
+5. insert(index, value): 在列表的index位置,插入值value
+6. pop(): 删除列表末尾的元素
+7. pop(index): 删除指定位置的元素
+8. 把某个元素替换成别的元素，可以直接赋值给对应的索引位置 classmates[0] = 'Admin'
+9. 列表中的值可以是任意类型, 可以是二维列表多维列表,和JavaScript数组类似
+    ```
+    >>> classmates = ['Johnny', 'Jack', 'Smith']
+    >>> classmates
+    ['Johnny', 'Jack', 'Smith']
+    >>> classmates[0]
+    'Johnny'
+    >>> classmates[-1]
+    'Smith'
+    >>> classmates[3]
+    报错: IndexError: list index out of range
+    >>> classmates.append('Bob')
+    >>> classmates
+    ['Johnny', 'Jack', 'Smith', 'Bob']
+    >>> classmates.insert(1, 'Mark')
+    >>> classmates
+    ['Johnny', 'Mark', 'Jack', 'Smith', 'Bob']
+    >>> classmates.pop()
+    'Bob'
+    >>> classmates
+    ['Johnny', 'Mark', 'Jack', 'Smith']
+    >>> classmates.pop(1)
+    'Mark'
+    >>> classmates
+    ['Johnny', 'Jack', 'Smith']
+    >>> classmates[0] = 'Admin'
+    >>> classmates
+    ['Admin', 'Jack', 'Smith']
+    ```
+## tuple 列表 (和list类似,但是tuple一旦初始化就不能修改)
+1. 声明方式: classmates = ('Michael', 'Bob', 'Tracy')
+2. tuple列表不能变, 所以list中增删的方法在tuple中不适用
+3. 定义一个空的tuple: a = ()
+4. [PS]特别注意
+    ```
+    # 这样定义的不是一个tuple,而是数字1
+    >>> a = (1)
+    # 正确定义方式
+    >>> a = (1,)
+    ```
+5. tuple中,表面上看，tuple的元素确实变了，但其实变的不是tuple的元素，而是list的元素。tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向'a'，就不能改成指向'b'，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！
+    ```
+    >>> t = ('a', 'b', ['A', 'B'])
+    >>> t[2][0] = 'X'
+    >>> t[2][1] = 'Y'
+    >>> t
+    ('a', 'b', ['X', 'Y'])
+    ```
+    ![avatar](https://www.liaoxuefeng.com/files/attachments/923973516787680/0)
+    当我们把list的元素'A'和'B'修改为'X'和'Y'后，tuple变为：
+    ![avatar](https://www.liaoxuefeng.com/files/attachments/923973647515872/0)
+
+## 条件判断
+1. if elif else  (注意点: 要少写了冒号:)
+    ```
+    age = 3
+    if age >= 18:
+        print('adult')
+    elif age >= 6:
+        print('teenager')
+    else:
+        print('kid')
+    ```
