@@ -118,3 +118,144 @@ Url: https://www.liaoxuefeng.com/wiki/1016959663602400/1017092876846880
     else:
         print('kid')
     ```
+
+## 循环 (for...in...) (while)
+  # for...in
+    ```
+    names = ['Michael', 'Bob', 'Tracy']
+    for name in names:
+        print(name)
+    # 会依次打印出name
+    ```
+  # while循环
+  只要条件满足，就不断循环，条件不满足时退出循环
+  ```
+  sum = 0
+  n = 99
+  while n > 0:
+      sum = sum + n
+      n = n - 2
+  print(sum)
+  ```
+  # break continue 在循环中的应用
+    1. break: 前退出循环
+      ```
+      # for...in...中使用
+      n = 0
+      for x in [1,2,3,4,5]:
+        if x == 3:
+          break
+        n = n + x
+      print(n)
+
+      # while中使用
+      w = 5
+      wsum = 0
+      while w > 0:
+        w = w - 1
+        if w == 3:
+          break
+        wsum = wsum + w
+      print(wsum)
+      ```
+    2. continue: 跳过当前的这次循环，直接开始下一次循环
+      ```
+      # for...in...中使用
+      n = 0
+      for x in [1,2,3,4,5]:
+        if x == 3:
+          continue
+        n = n + x
+      print(n)
+
+      # while中使用
+      w = 5
+      wsum = 0
+      while w > 0:
+        w = w - 1
+        if w == 3:
+          continue
+        wsum = wsum + w
+      print(wsum)
+    ```  
+
+
+## dict
+  dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
+  1. pop(key) 删除dict中某一个key
+  ```
+  >>> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+  >>> d['Michael']
+  95
+  >>> d['New'] = 80
+  >>> d
+  {'Michael': 95, 'Bob': 75, 'Tracy': 85, 'New': 80}
+  >>> d.pop('Tracy')
+  85
+  >>> d
+  {'Michael': 95, 'Bob': 75, 'New': 80}
+  ```
+  一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉; 如果key不存在，dict就会报错
+  ```
+  >>> d['Jack'] = 90
+  >>> d['Jack']
+  90
+  >>> d['Jack'] = 88
+  >>> d['Jack']
+  88
+  ```
+
+# 判断key是否在dict中
+1. 'xxx' in dict
+  ```
+  >>> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+  >>> 'Bob' in d
+  True
+  ```
+2. 通过dict提供的get()方法，如果key不存在，可以返回None，或者自己指定的value; 返回None的时候Python的交互环境不显示结果
+  ```
+  >>> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+  >>> d.get('Bob')
+  75
+  >>> d.get('Thomas') # 返回None的时候Python的交互环境不显示结果
+  >>> d.get('Thomas', -1)
+  -1
+  ```
+
+## set 
+set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+要创建一个set，需要提供一个list作为输入集合
+```
+>>> s = set([1, 2, 3])
+>>> s
+{1, 2, 3}
+```
+
+重复元素在set中自动被过滤：
+```
+>>> s = set([1, 1, 2, 2, 3, 3])
+>>> s
+{1, 2, 3}
+```
+
+add(key):添加元素到set中，可以重复添加，但不会有效果
+remove(key):删除元素
+```
+>>> s = set([1, 2, 3])
+>>> s.add(4)
+>>> s
+{1, 2, 3, 4}
+>>> s.remove(2)
+>>> s
+{1, 3, 4}
+```
+
+set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：
+```
+>>> s1 = set([1, 2, 3])
+>>> s2 = set([2, 3, 4])
+>>> s1 & s2
+{2, 3}
+>>> s1 | s2
+{1, 2, 3, 4}
+```
