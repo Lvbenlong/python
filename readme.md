@@ -1,4 +1,10 @@
-<!-- TOC -->autoauto        - [Python学习记录](#python学习记录)auto        - [Python笔记](#python笔记)auto    - [数据类型](#数据类型)auto    - [变量](#变量)auto    - [字符串](#字符串)auto    - [list 列表 (类似JavaScript中的数组)](#list-列表-类似javascript中的数组)auto    - [tuple 列表 (和list类似,但是tuple一旦初始化就不能修改)](#tuple-列表-和list类似但是tuple一旦初始化就不能修改)auto    - [条件判断](#条件判断)auto    - [循环 (for...in...) (while)](#循环-forin-while)auto    - [dict](#dict)auto- [判断key是否在dict中](#判断key是否在dict中)auto    - [set](#set)auto    - [函数](#函数)auto    - [函数的参数](#函数的参数)auto    - [递归函数](#递归函数)autoauto<!-- /TOC -->
+---
+注释
+---
+<!-- TOC -->
+- [Python]
+<!-- TOC -->
+
 
 ### Python学习记录
 Url: https://www.liaoxuefeng.com/wiki/1016959663602400/1017092876846880
