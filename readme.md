@@ -525,3 +525,83 @@ set可以看成数学意义上的无序和无重复元素的集合，因此，�
         else:
           print('D')
   ```
+
+# 面向对象
+  ## 使用__slots__
+    正常情况下，当我们定义了一个class，创建了一个class的实例后，我们可以给该实例绑定任何属性和方法；
+    但是，如果我们想要限制实例的属性，此时需要借用__slots__; 
+    ```
+      class Student(object):
+        __slots__ = ('name', 'age')
+      
+      s1 = Student()
+      s1.name = 'name1'
+      s1.age = 11
+      s1.sex = 'male'
+      >>> error slots中没有定义sex这个属性，实例在绑定sex属性的时候会报错
+    ```
+  
+  ## 使用@property
+    在绑定属性时，如果我们直接把属性暴露出去，但是不建议这么做，缺少校验；
+    可以在类里面定义get set方法 来达到效果
+
+    ```
+      class Student(object):
+        def set_score (self, value):
+            if not isinstance(value, int):
+                raise ValueError('score must be int')
+
+            if value < 0 or value > 100:
+                raise ValueError('score must be 1 ~ 100')
+
+            self._score = value
+        
+        def get_score (self):
+            return self._score
+
+      s1 = Student()
+      s1.set_score(90)
+      print(s1.get_score())
+    ```
+
+    上面的代码略显复杂，在python中可以通过@property装饰器，把一个方法变成属性调用
+    @property： 把一个getter方法变成属性，只需要加上@property就可以了，此时，@property本身又创建了另一个装饰器@score.setter，负责把一个setter方法变成属性赋值，于是，我们就拥有一个可控的属性操作
+    ```
+      class Student(object):
+          @property
+          def score (self):
+              return self._score
+          
+          @score.setter
+          def score (self, value):
+              if not isinstance(value, int):
+                  raise ValueError('score must be int')
+
+              if value < 0 or value > 100:
+                  raise ValueError('score must be 1 ~ 100')
+
+              self._score = value
+
+
+      s1 = Student()
+      s1.score = 60
+      print(s1.score)    
+    ```
+    
+    还可以定义只读属性，只定义getter方法，不定义setter方法就是一个只读属性
+    ```
+      class Student(object):
+
+          @property
+          def birth(self):
+              return self._birth
+
+          @birth.setter
+          def birth(self, value):
+              self._birth = value
+
+          @property
+          def age(self):
+              return 2015 - self._birth  
+          
+    ```
